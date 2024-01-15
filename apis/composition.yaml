@@ -1,0 +1,23 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: test
+spec:
+  compositeTypeRef:
+    apiVersion: haarchri.io/v1alpha1
+    kind: XTest
+  mode: Pipeline
+  pipeline:
+  - step: render-templates
+    functionRef:
+      name: function-go-templating
+    input:
+      apiVersion: gotemplating.fn.crossplane.io/v1beta1
+      kind: GoTemplate
+      source: FileSystem
+      fileSystem:
+        dirPath: ./templates
+
+  - step: ready
+    functionRef:
+      name: function-auto-ready

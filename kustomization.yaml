@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- apis/composition.yaml
+- apis/definition.yaml
+- examples/deployment_runtime_config.yaml
+- examples/functions.yaml
+- examples/provider.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+configMapGenerator:
+- name: templates
+  namespace: upbound-system
+  files:
+  - apis/templates/_helpers.tpl
+  - apis/templates/resource.yaml

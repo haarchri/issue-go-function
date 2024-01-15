@@ -1,0 +1,8 @@
+apiVersion: haarchri.io/v1alpha1
+kind: XTest
+metadata:
+  name: test
+  labels:
+    haarchri.io/account-name: test
+    haarchri.io/controlplane-name: test
+spec: {}

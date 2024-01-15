@@ -1,0 +1,22 @@
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
+metadata:
+  name: templates
+  namespace: upbound-system
+spec:
+  deploymentTemplate:
+    spec:
+      selector: {}
+      template:
+        spec:
+          containers:
+          - name: package-runtime
+            volumeMounts:
+            - mountPath: /templates
+              name: templates
+          volumes:
+          - name: templates
+            projected:
+              sources:
+              - configMap:
+                  name: templates
